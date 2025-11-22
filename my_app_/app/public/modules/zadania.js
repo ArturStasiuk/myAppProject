@@ -532,15 +532,21 @@ widok_podglad_zadan(response){
          <table class="zadania-table" id="zadania-table-${id_projektu}">
             <thead>
             <tr>
-               <th>Zadanie</th>
-               <th>Opis</th>
-               <th class="status-col">Status</th>
-               <th>Priorytet</th>
-               <th>Notatka</th>
-               <th>📅 Rozpoczęcie</th>
-               <th>🏁 Zakończenie</th>
-               <th>⏳ Planowana</th>
-               <th>📈 Wykonanie</th>
+               <th>🏷️<br>Zadanie</th>
+               <th>📝<br>Opis</th>
+               
+               <th >✅ Status<br></th>
+               <th>⚠️<br>Priorytet</th>
+               
+               <th>🗒️<br>Notatka</th>
+               
+               <th>📅<br>Rozpoczęcie</th>
+               
+               <th>🏁<br>Zakończenie</th>
+               
+               <th>⏳<br>Planowana</th
+               >
+               <th>📈 <br>Wykonanie</th>
             </tr>
             </thead>
             <tbody>
