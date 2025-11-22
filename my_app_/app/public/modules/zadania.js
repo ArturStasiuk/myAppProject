@@ -185,13 +185,13 @@ async dodaj_zadania(id_projektu, zadaniaDoDodania){
       return;
    }
  
-   const odpowiedz = this.add_wiele_zadan(zadaniaDoDodania);
-      if (odpowiedz && odpowiedz.status === 'success') {
-         alert('Zadania zostały dodane pomyślnie.');
-      } else {
-         alert('Wystąpił błąd podczas dodawania zadań.');
-      }
-
+   const odpowiedz = await this.add_wiele_zadan(zadaniaDoDodania);
+   console.log('Odpowiedź z add_wiele_zadan:', odpowiedz);
+   if (odpowiedz && odpowiedz.status === 'success') {
+      alert('Zadania zostały dodane pomyślnie.');
+   } else {
+      alert('Wystąpił błąd podczas dodawania zadań.');
+   }
    this.podglad_zadan(id_projektu);
 }
 
@@ -337,38 +337,77 @@ widok_many_zadania(id_projektu) {
             <div class="zadania-table-wrap zadania-form-wrap">
             <table class="zadania-table zadania-form-table">
                <tbody>
-               <tr><td><span title="Zadanie">📝 Zadanie</span></td><td><textarea name="tytul_zadania" rows="3">${tytul_zadania}</textarea></td></tr>
-               <tr><td><span title="Opis zadania">📄 Opis</span></td><td><textarea name="opis_zadania" rows="3">${opis_zadania}</textarea></td></tr>
-               <tr><td><span title="Notatka">📝 Notatka</span></td><td><textarea name="notatka" rows="2">${notatka}</textarea></td></tr>
-               <tr><td><span title="Data rozpoczęcia">📅 Rozpoczęcie</span></td><td><input type="date" name="data_rozpoczecia" value="${data_rozpoczecia}"></td></tr>
-               <tr><td><span title="Data zakończenia">🏁 Zakończenie</span></td><td><input type="date" name="data_zakonczenia" value="${data_zakonczenia}"></td></tr>
-               <tr><td><span title="Planowana data zakończenia">⏳ Planowana</span></td><td><input type="date" name="planowana_data_zakonczenia" value="${planowana_data_zakonczenia}"></td></tr>
-               <tr><td><span title="Status zadania">✔️ Status</span></td><td><input type="checkbox" name="status_zadania" value="1"${status_zadania ? ' checked' : ''}> Wykonane</td></tr>
-               <tr><td><span title="Priorytet">⭐ Priorytet</span></td><td>
-               <select name="priorytet">
-                  <option value="Niski"${priorytet==='Niski'?' selected':''}>Niski</option>
-                  <option value="Normalny"${priorytet==='Normalny'?' selected':''}>Normalny</option>
-                  <option value="Wysoki"${priorytet==='Wysoki'?' selected':''}>Wysoki</option>
-                  <option value="Krytyczny"${priorytet==='Krytyczny'?' selected':''}>Krytyczny</option>
-               </select>
-               </td></tr>
-               <tr><td><span title="Przypomnij rozpoczęcie">⏰ Przypomnij</span></td><td><input type="checkbox" name="przypomnij_rozpoczecie" value="1"${przypomnij_rozpoczecie ? ' checked' : ''}></td></tr>
-               <tr><td><span title="Pracownik">👷 Pracownik</span></td><td>
-               <select name="id_pracownika">
-                  <option value="">-- Wybierz pracownika --</option>
-                  ${pracownicyOptions}
-               </select>
-               </td></tr>
-               <tr><td><span title="Procent wykonania">📈 Procent</span></td><td>
-               <input type="range" name="procent_wykonania" min="0" max="100" value="${procent_wykonania}" oninput="this.nextElementSibling.value = this.value">
-               <output style="margin-left:8px;">${procent_wykonania}</output> %
-               </td></tr>
+               <tr>
+                  <td colspan="2"><label for="tytul_zadania">📝 Zadanie</label></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><textarea name="tytul_zadania" id="tytul_zadania" rows="3">${tytul_zadania}</textarea></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><label for="opis_zadania">📄 Opis</label></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><textarea name="opis_zadania" id="opis_zadania" rows="3">${opis_zadania}</textarea></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><label for="notatka">📝 Notatka</label></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><textarea name="notatka" id="notatka" rows="2">${notatka}</textarea></td>
+               </tr>
+               <tr>
+                  <td><label for="data_rozpoczecia">📅 Rozpoczęcie</label></td>
+                  <td><input type="date" name="data_rozpoczecia" id="data_rozpoczecia" value="${data_rozpoczecia}"></td>
+               </tr>
+               <tr>
+                  <td><label for="data_zakonczenia">🏁 Zakończenie</label></td>
+                  <td><input type="date" name="data_zakonczenia" id="data_zakonczenia" value="${data_zakonczenia}"></td>
+               </tr>
+               <tr>
+                  <td><label for="planowana_data_zakonczenia">⏳ Planowana</label></td>
+                  <td><input type="date" name="planowana_data_zakonczenia" id="planowana_data_zakonczenia" value="${planowana_data_zakonczenia}"></td>
+               </tr>
+               <tr>
+                  <td><label for="status_zadania">✔️ Status</label></td>
+                  <td><input type="checkbox" name="status_zadania" id="status_zadania" value="1"${status_zadania ? ' checked' : ''}> Wykonane</td>
+               </tr>
+               <tr>
+                  <td><label for="priorytet">⭐ Priorytet</label></td>
+                  <td>
+                     <select name="priorytet" id="priorytet">
+                        <option value="Niski"${priorytet==='Niski'?' selected':''}>Niski</option>
+                        <option value="Normalny"${priorytet==='Normalny'?' selected':''}>Normalny</option>
+                        <option value="Wysoki"${priorytet==='Wysoki'?' selected':''}>Wysoki</option>
+                        <option value="Krytyczny"${priorytet==='Krytyczny'?' selected':''}>Krytyczny</option>
+                     </select>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="przypomnij_rozpoczecie">⏰ Przypomnij</label></td>
+                  <td><input type="checkbox" name="przypomnij_rozpoczecie" id="przypomnij_rozpoczecie" value="1"${przypomnij_rozpoczecie ? ' checked' : ''}></td>
+               </tr>
+               <tr>
+                  <td><label for="id_pracownika">👷 Pracownik</label></td>
+                  <td>
+                     <select name="id_pracownika" id="id_pracownika">
+                        <option value="">-- Wybierz pracownika --</option>
+                        ${pracownicyOptions}
+                     </select>
+                  </td>
+               </tr>
+               <tr>
+                  <td><label for="procent_wykonania">📈 Procent</label></td>
+                  <td>
+                     <input type="range" name="procent_wykonania" id="procent_wykonania" min="0" max="100" value="${procent_wykonania}" oninput="this.nextElementSibling.value = this.value">
+                     <output style="margin-left:8px;">${procent_wykonania}</output> %
+                  </td>
+               </tr>
                </tbody>
             </table>
             </div>
             <input type="hidden" name="id_projektu" value="${id_projektu}">
             ${isEdit && zadanie.id_zadania ? `<input type="hidden" name="id_zadania" value="${zadanie.id_zadania}">` : ''}
-            </form>
+         </form>
          <script>
          window.zadania = window.zadania || {};
          window.zadania._zbierzDaneZadanie = function(formId) {
@@ -659,26 +698,23 @@ widok_podglad_zadan(response){
 */
 async add_zadanie(dane){
    
-   const errors = this. walidujZadanie(dane);
-if (errors.length > 0) {
-  alert('Wystąpiły błędy walidacji:\n' + errors.join('\n'));
-  return;
-} 
-
-
- const odpowiedz = await this.fetchApi({
-   "funkcja": "add",
-   "tabela": "zadania",
-   "dane": dane
-});
-const message = odpowiedz.message || 'Zadanie zostało dodane.';
-if (confirm(`${message}\n\nCzy chcesz dodać kolejne zadanie?`)) {
-   // Dodaj kolejne zadanie (ponownie otwórz formularz)
-   this.dodaj_zadanie(dane.id_projektu);
-} else {
-   // Wróć do podglądu zadań
-   this.podglad_zadan(dane.id_projektu);
-}
+   const errors = this.walidujZadanie(dane);
+   if (errors.length > 0) {
+      alert('Wystąpiły błędy walidacji:\n' + errors.join('\n'));
+      return;
+   }
+   const odpowiedz = await this.fetchApi({
+      "funkcja": "add",
+      "tabela": "zadania",
+      "dane": dane
+   });
+   console.log('Odpowiedź z API (add_zadanie):', odpowiedz);
+   const message = odpowiedz.message || 'Zadanie zostało dodane.';
+   if (confirm(`${message}\n\nCzy chcesz dodać kolejne zadanie?`)) {
+      this.dodaj_zadanie(dane.id_projektu);
+   } else {
+      this.podglad_zadan(dane.id_projektu);
+   }
 
 }
 
@@ -838,33 +874,37 @@ async sprawdz_uprawnienia(id_projektu){
 /* waliduje dane ustawiajac odpowiednie wartosc w razie np pustych pul
 */
 walidujZadanie(dane) {
-  const errors = [];
-
+   const errors = [];
 
    // id_projektu - wymagane, liczba całkowita
    if (!dane.id_projektu || isNaN(parseInt(dane.id_projektu))) {
-      // Ustaw domyślną wartość (np. 1) jeśli nieprawidłowe
+      errors.push('Brak prawidłowego id_projektu.');
       dane.id_projektu = 1;
    }
 
-   // tytul_zadania - opcjonalny, max 255 znaków
-   if (dane.tytul_zadania && dane.tytul_zadania.length > 255) {
+   // tytul_zadania - wymagany, max 255 znaków
+   if (!dane.tytul_zadania || dane.tytul_zadania.trim().length === 0) {
+      errors.push('Tytuł zadania jest wymagany.');
+   } else if (dane.tytul_zadania.length > 255) {
       dane.tytul_zadania = dane.tytul_zadania.substring(0, 255);
    }
 
-  // opis_zadania, notatka - opcjonalne, dowolny tekst
+   // data_rozpoczecia - wymagane
+   if (!dane.data_rozpoczecia || !/^\d{4}-\d{2}-\d{2}$/.test(dane.data_rozpoczecia)) {
+      errors.push('Nieprawidłowa data rozpoczęcia.');
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dane.data_rozpoczecia = `${yyyy}-${mm}-${dd}`;
+   }
 
-   // data_rozpoczecia, data_zakonczenia, planowana_data_zakonczenia - opcjonalne, poprawny format daty
-   ['data_rozpoczecia', 'data_zakonczenia', 'planowana_data_zakonczenia'].forEach(field => {
+   // data_zakonczenia, planowana_data_zakonczenia - opcjonalne, poprawny format daty
+   ['data_zakonczenia', 'planowana_data_zakonczenia'].forEach(field => {
       if (dane[field] === '') {
          dane[field] = null;
       } else if (dane[field] && !/^\d{4}-\d{2}-\d{2}$/.test(dane[field])) {
-         // Ustaw dzisiejszą datę jeśli format jest nieprawidłowy
-         const today = new Date();
-         const yyyy = today.getFullYear();
-         const mm = String(today.getMonth() + 1).padStart(2, '0');
-         const dd = String(today.getDate()).padStart(2, '0');
-         dane[field] = `${yyyy}-${mm}-${dd}`;
+         dane[field] = null;
       }
    });
 
@@ -905,7 +945,7 @@ walidujZadanie(dane) {
       }
    }
 
-  return errors;
+   return errors;
 }
 
 
