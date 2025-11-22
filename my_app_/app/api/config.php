@@ -3,8 +3,22 @@ class Config {
     //  konfiguracja dla lenowo
     const DB_HOST = 'localhost';
     const DB_NAME = 'project_002';
-    const DB_USER = 'phpmyadmin';
-    const DB_PASS = 'artur'; 
+    const DB_USER = 'root';
+    const DB_PASS = ''; 
+    //bbb 35t34t 43t 
+
+/* configuracja dla windows
+
+    const DB_HOST = 'localhost';
+    const DB_NAME = 'project_002';
+    const DB_USER = 'root';
+    const DB_PASS = ''; 
+    */
+
+
+
+
+
 }
 try {
     $pdo = new PDO(
