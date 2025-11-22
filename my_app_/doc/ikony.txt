@@ -1,0 +1,205 @@
+// Podstawowe akcje projektowe
+'👁️'  // Podgląd/Wyświetl szczegóły
+'✏️'  // Edytuj projekt
+'🗑️'  // Usuń projekt
+'📋'  // Lista zadań
+'➕'  // Dodaj nowy projekt/zadanie
+'💾'  // Zapisz zmiany
+'❌'  // Anuluj/Zamknij
+'✅'  // Zatwierdź/Zaakceptuj
+'🔄'  // Odśwież/Synchronizuj
+'⚙️'  // Ustawienia projektu
+'🔍'  // Wyszukaj/Filtruj
+'📊'  // Statystyki/Raporty
+'📈'  // Postęp/Wydajność
+'📉'  // Spadek/Problemy
+'📅'  // Data/Kalendarz
+'⏰'  // Przypomnienie/Alarm
+'⏱️'  // Timer/Czas
+'🕐'  // Godzina
+'📆'  // Harmonogram
+'⏳'  // Oczekujące/W trakcie
+'⏸️'  // Wstrzymane/Pauza
+'▶️'  // Start/Rozpoczęcie
+'⏹️'  // Stop/Zakończenie
+'⏩'  // Przyspieszenie/Pilne
+'🏁'  // Meta/Koniec
+'👷'  // Brygada/Pracownicy
+'👤'  // Użytkownik
+'👥'  // Zespół/Grupa
+'👨‍💼' // Kierownik/Manager
+'🏢'  // Firma/Organizacja
+'💼'  // Biznes/Praca
+'🤝'  // Współpraca
+'👨‍🔧' // Technik
+'👨‍💻' // Programista
+'📝'  // Notatka/Wpis
+'📄'  // Dokument
+'📋'  // Clipboard/Lista
+'📌'  // Przypięte/Ważne
+'📎'  // Załącznik
+'💬'  // Komentarz/Chat
+'📧'  // Email/Wiadomość
+'📞'  // Kontakt telefoniczny
+'💭'  // Pomysł/Sugestia
+'🔔'  // Powiadomienie
+'🔴'  // Krytyczny/Błąd
+'🟠'  // Ostrzeżenie/Pilny
+'🟡'  // Uwaga/Średni
+'🟢'  // OK/Normalny
+'⭐'  // Ważne/Priorytet
+'🌟'  // Extra/Bonus
+'⚠️'  // Ostrzeżenie
+'❗'  // Pilne/Ważne
+'❓'  // Pytanie/Nieznane
+'✔️'  // Wykonane/Gotowe
+'❌'  // Niewykonane/Błąd
+'⏳'  // W trakcie realizacji
+'🔒'  // Zablokowane
+'🔓'  // Odblokowane
+'🎯'  // Cel/Target
+'🚀'  // Start/Launch
+'🔧'  // Naprawa/Serwis
+'🛠️'  // Narzędzia/Konserwacja
+'🏗️'  // Budowa/Konstrukcja
+'🎨'  // Design/Wygląd
+'💡'  // Pomysł/Innowacja
+'🔬'  // Analiza/Badanie
+'📦'  // Pakiet/Dostawa
+'🚚'  // Transport/Logistyka
+'💰'  // Finanse/Budżet
+'💳'  // Płatność
+'📍'  // Lokalizacja/Miejsce
+'🗺️'  // Mapa/Nawigacja
+'🔄'  // Odśwież/Reload
+'↩️'  // Cofnij/Undo
+'↪️'  // Ponów/Redo
+'⬆️'  // Upload/Przenieś w górę
+'⬇️'  // Download/Przenieś w dół
+'🔀'  // Zamień/Shuffle
+'🔁'  // Powtórz/Loop
+'📤'  // Wyślij/Export
+'📥'  // Odbierz/Import
+'🔗'  // Link/Połączenie
+'📲'  // Synchronizuj
+'🖨️'  // Drukuj
+'📸'  // Zrzut ekranu
+'🔐'  // Zabezpiecz
+// Nawigacja i kontrola widoku
+'⬅️'  // Cofnij/Wstecz/Powrót
+'➡️'  // Dalej/Naprzód
+'🔼'  // Zwiń/Collapse/Do góry
+'🔽'  // Rozwiń/Expand/Na dół
+'↕️'  // Rozwiń/Zwiń toggle
+'⬆️'  // Przewiń do góry
+'⬇️'  // Przewiń na dół
+'↩️'  // Cofnij akcję (Undo)
+'↪️'  // Ponów akcję (Redo)
+'🔙'  // Wróć/Back
+'🔚'  // Koniec/End
+'🔛'  // Włącz/On
+'🔝'  // Na górę strony
+
+// Sortowanie i organizacja
+'🔀'  // Przemieszaj/Losuj
+'🔃'  // Odwróć kolejność
+'⬆️⬇️' // Sortuj
+'📑'  // Karty/Tabs
+'🗂️'  // Segregator/Kategorie
+'📊'  // Widok wykresów
+'📋'  // Widok listy
+'🔲'  // Widok kafelków/Grid
+'▦'   // Widok tabeli
+
+// Pełny ekran i okna
+'⛶'   // Pełny ekran
+'🗖'  // Maksymalizuj okno
+'🗕'  // Minimalizuj okno
+'🗗'  // Przywróć okno
+'⊡'   // Nowe okno
+
+// Przyciski rozwijane
+'▶️'  // Rozwiń w prawo
+'◀️'  // Zwiń w lewo
+'🔻'  // Menu rozwijane w dół
+'🔺'  // Menu zwijane do góry
+'⏷'   // Dropdown zamknięty
+'⏶'   // Dropdown otwarty
+
+// Kopiowanie i przenoszenie
+'📋'  // Kopiuj
+'✂️'  // Wytnij
+'📌'  // Przypnij
+'📍'  // Oznacz pozycję
+'↗️'  // Przenieś/Eksportuj
+'↖️'  // Importuj
+
+// Widoczność
+'👁️'  // Pokaż
+'👁️‍🗨️' // Podgląd z uwagami
+'🙈'  // Ukryj
+'🔍'  // Zoom in/Powiększ
+'🔎'  // Zoom out/Pomniejsz
+
+// Historia i wersje
+'⏮️'  // Pierwsza wersja/Początek
+'⏭️'  // Ostatnia wersja/Koniec
+'⏪'  // Przewiń wstecz
+'⏩'  // Przewiń naprzód
+'🕐'  // Historia/Timeline
+// Projekty i katalogi
+'📁'  // Folder/Katalog
+'📂'  // Folder otwarty
+'🗀'  // Folder wielostronicowy
+'🗁'  // Folder otwarty wielostronicowy
+'📚'  // Biblioteka projektów
+'🗃️'  // Kartoteka/Archiwum
+'🗄️'  // Szafka na dokumenty
+'📦'  // Pakiet/Paczka projektowa
+'🎯'  // Projekt główny/Cel projektu
+'🏗️'  // Projekt w budowie
+'🏢'  // Projekt firmowy/Korporacyjny
+'🏭'  // Projekt produkcyjny
+'🏠'  // Projekt domowy/Lokalny
+'🌐'  // Projekt globalny/Internetowy
+'💼'  // Portfolio/Teczka projektów
+'📋'  // Projekt standardowy/Lista
+'📊'  // Projekt analityczny
+'🎨'  // Projekt kreatywny/Design
+'🔬'  // Projekt badawczy/R&D
+'⚙️'  // Projekt techniczny
+'🚀'  // Projekt startupowy/Nowy
+'🏆'  // Projekt priorytetowy/VIP
+'⭐'  // Projekt ulubiony/Oznaczony
+'📌'  // Projekt przypięty
+'🔒'  // Projekt zamknięty/Prywatny
+'🔓'  // Projekt otwarty/Publiczny
+'🔐'  // Projekt zabezpieczony
+'🗂️'  // Kategoria projektów
+'📑'  // Zakładka projektu/Sekcja
+'🏷️'  // Tag/Etykieta projektu
+'🔖'  // Zakładka/Bookmark
+'📍'  // Projekt aktywny/Bieżący
+'🌟'  // Projekt wyróżniony
+'💎'  // Projekt premium
+'🎁'  // Projekt bonusowy
+'🗺️'  // Mapa projektów/Roadmap
+'🧩'  // Moduł/Komponent projektu
+'⚡'  // Projekt ekspresowy/Szybki
+'🔥'  // Projekt gorący/Pilny
+'❄️'  // Projekt zamrożony/Wstrzymany
+'♻️'  // Projekt cykliczny/Powtarzalny
+'🔄'  // Projekt w obiegu/Rotacja
+'🎪'  // Projekt eventowy
+'📐'  // Projekt projektowy/Planowanie
+'🎬'  // Projekt medialny/Produkcja
+'🎮'  // Projekt rozrywkowy
+'🎓'  // Projekt edukacyjny
+'🏥'  // Projekt medyczny
+'🔧'  // Projekt serwisowy
+'🛠️'  // Projekt naprawczy/Maintenance
+'🌱'  // Projekt rozwijający się/Nowy
+'🌳'  // Projekt dojrzały/Stabilny
+'🍂'  // Projekt wygaszany
+'⚰️'  // Projekt archiwizowany
+'🗑️'  // Projekt do usunięcia

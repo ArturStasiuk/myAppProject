@@ -1,0 +1,319 @@
+
+/* ===================== Widok tabeli extra_praca ===================== */
+
+.extra-table-wrap {
+    max-height: 320px;
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    background: #1f2937;
+    margin-bottom: 10px;
+}
+
+.extra-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+    color: #f9fafb;
+}
+
+.extra-table th {
+    position: sticky;
+    top: 0;
+    background: #111827;
+    z-index: 2;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f9fafb;
+}
+
+.extra-table td {
+    word-break: break-word;
+    white-space: pre-wrap;
+    max-width: 250px;
+    padding: 8px;
+    font-size: 15px;
+    vertical-align: top;
+    border-bottom: 1px solid #374151;
+    background: transparent;
+    color: #f9fafb;
+    height: auto !important;
+}
+
+.extra-table tr {
+    height: auto !important;
+}
+
+.extra-table .extra-row.selected {
+    background: #2563eb !important;
+    color: #f9fafb;
+}
+
+.extra-table .extra-row:hover {
+    background: #374151;
+}
+
+@media (max-width: 700px) {
+    .extra-table th, .extra-table td {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .extra-table td {
+        max-width: 120px;
+    }
+}
+
+body.light .extra-table-wrap {
+    background: #140000;
+    border: 1px solid #e5e7eb;
+}
+body.light .extra-table th {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .extra-table td {
+    background: #fff;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .extra-table .extra-row.selected,
+body.light .extra-table .extra-row.selected td,
+body.light .extra-table .extra-row.selected th {
+    background: #2563eb !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px #2563eb33;
+    outline: 1.5px solid #2563eb;
+    z-index: 1;
+}
+body.light .extra-table .extra-row:hover {
+    background: #b1d2f3;
+}
+
+/* ===================== Responsywność tabeli ===================== */
+@media (max-width: 700px) {
+    /* Mniejszy font i padding na małych ekranach */
+    .extra-table th, .extra-table td {
+        font-size: 13px;
+        padding: 6px;
+    }
+    /* Kolumna Opis pracy na mobile */
+    .extra-table th.extra-col-opis,
+    .extra-table td:nth-child(1) {
+        min-width: 80px;
+        max-width: 120px;
+        width: 24%;
+    }
+    /* Kolumna Notatka na mobile */
+    .extra-table th.extra-col-notatka,
+    .extra-table td:nth-child(2) {
+        min-width: 60px;
+        max-width: 100px;
+        width: 16%;
+    }
+    .extra-table td {
+        max-width: 120px;
+    }
+}
+
+/* ===================== Tryb jasny (light mode) ===================== */
+body.light .extra-table-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+}
+body.light .extra-table th {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .extra-table td {
+    background: #fff;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* ===================== Styl wiersza podsumowania ===================== */
+.extra-table .extra-summary-row {
+    background: #ffffff;
+     color: #000000;
+     font-weight: bold;
+     border-top: 2px solid #2563eb;
+     border-bottom: 2px solid #2563eb;
+}
+body.light .extra-table .extra-summary-row {
+     background: #e0e7ef;
+     color: #1f2937;
+     font-weight: bold;
+     border-top: 2px solid #2563eb;
+     border-bottom: 2px solid #2563eb;
+}
+body.light .extra-table .extra-row.selected,
+body.light .extra-table .extra-row.selected td,
+body.light .extra-table .extra-row.selected th {
+    background: #2563eb !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px #2563eb33;
+    outline: 1.5px solid #2563eb;
+    z-index: 1;
+}
+body.light .extra-table .extra-row:hover {
+    background: #f1f5f9;
+}
+
+/* Styl dla przycisku Edytuj */
+.extra-btn-edit {
+    background: #2563eb;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    background: #2563eb;
+    color: #fff;
+}
+
+/* Styl dla widoku extra_praca - extra_praca.css */
+
+.extra-btn-save, .extra-btn-cancel, .extra-btn-delete, .extra-btn-edit {
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    height: 28px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.extra-btn-save {
+    background: #22c55e;
+    color: #fff;
+}
+.extra-btn-save:hover {
+    background: #16a34a;
+}
+.extra-btn-cancel {
+    background: #ef4444;
+    color: #fff;
+}
+.extra-btn-cancel:hover {
+    background: #b91c1c;
+}
+.extra-btn-delete {
+    background: #dc2626;
+    color: #fff;
+}
+.extra-btn-delete:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+.extra-form-wrap {
+    background: #1f2937;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+body.light .extra-form-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+}
+
+body.light .extra-form-group label {
+    color: #1f2937;
+}
+
+body.light .extra-form-group input[type="text"],
+body.light .extra-form-group input[type="date"],
+body.light .extra-form-group input[type="number"],
+body.light .extra-form-group select,
+body.light .extra-form-group textarea {
+    background: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+}
+/* Nowy styl dla pionowego formularza extra_praca */
+.extra-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 18px 0 18px;
+}
+.extra-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.extra-form-group label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f9fafb;
+    margin-bottom: 2px;
+}
+.extra-form-group input[type="text"],
+.extra-form-group input[type="date"],
+.extra-form-group input[type="number"],
+.extra-form-group select,
+.extra-form-group textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    background: #111827;
+    color: #f9fafb;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+.extra-form-group textarea {
+    resize: vertical;
+}
+.extra-form-checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.extra-form-checkbox label {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.extra-footer-stat {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    background: #111827;
+    color: #f9fafb;
+    font-size: 15px;
+    border-radius: 0 0 12px 12px;
+    padding: 8px 12px 8px 8px;
+    margin-top: 0;
+    border-top: 1px solid #374151;
+    min-height: 28px;
+}
+
+body.light .extra-footer-stat {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Kolor czcionki i wysokość dla wiersza podsumowania */
+.extra-table .extra-summary-row,
+.extra-table .extra-summary-row td {
+    color: #b60707 !important;
+    height: 28px !important;
+    font-size: 14px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+

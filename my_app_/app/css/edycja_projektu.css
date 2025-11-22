@@ -1,0 +1,181 @@
+body.light .projekt-tile-header-nowa,
+body.light .projekt-tile-header-main {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+/* Nagłówek edycji projektu - minimalistyczny */
+.projekt-tile-header-nowa {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 8px 0 0 0;
+  margin-bottom: 0;
+}
+.projekt-tile-header-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+  min-height: 28px;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+.projekt-tile-ikona {
+  font-size: 1.1em;
+  margin-right: 2px;
+  filter: none;
+  transition: none;
+  background: none;
+  box-shadow: none;
+}
+.projekt-tile-title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #f9fafb;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+body.light .projekt-tile-title {
+  color: #1f2937;
+}
+/* --- Styl edycji projektu (formularz) --- */
+.projekt-card-edit {
+  max-width: 520px;
+  margin: 24px auto 0 auto;
+  background: #232946;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(59,130,246,0.10), 0 2px 8px rgba(0,0,0,0.18);
+  border: 1px solid #2d334a;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+}
+.projekt-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.projekt-edit-form section.projekt-section {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 18px 24px 12px 24px;
+  border-bottom: 1px solid #2d334a;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.projekt-edit-form section.projekt-section:last-child {
+  border-bottom: none;
+  border-radius: 0 0 16px 16px;
+}
+.projekt-edit-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: #f9fafb;
+  font-weight: 500;
+  gap: 4px;
+}
+.projekt-edit-form input[type="text"],
+.projekt-edit-form input[type="date"],
+.projekt-edit-form textarea,
+.projekt-edit-form select {
+  margin-top: 4px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: 1px solid #374151;
+  background: #20263a;
+  color: #f9fafb;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.projekt-edit-form input[type="text"]:focus,
+.projekt-edit-form input[type="date"]:focus,
+.projekt-edit-form textarea:focus,
+.projekt-edit-form select:focus {
+  border: 1.5px solid #60a5fa;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+.projekt-edit-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+.projekt-edit-form input[type="checkbox"] {
+  accent-color: #2563eb;
+  margin-right: 6px;
+}
+.projekt-edit-save {
+  background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  margin-top: 8px;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transition: background 0.2s, opacity 0.2s;
+}
+.projekt-edit-save:enabled {
+  cursor: pointer;
+  opacity: 1;
+  background: linear-gradient(90deg, #22c55e 60%, #60e6a8 100%);
+}
+@media (max-width: 700px) {
+  .projekt-card-edit {
+    max-width: 98vw;
+    border-radius: 10px;
+  }
+  .projekt-edit-form section.projekt-section {
+    padding: 12px 8px 8px 8px;
+    border-radius: 0;
+  }
+  .projekt-edit-form section.projekt-section:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+}
+body.light .projekt-card-edit {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(59,130,246,0.07), 0 2px 8px rgba(0,0,0,0.07);
+}
+body.light .projekt-edit-form section.projekt-section {
+  background: none;
+  border-bottom: 1px solid #e5e7eb;
+}
+body.light .projekt-edit-form label {
+  color: #1f2937;
+}
+body.light .projekt-edit-form input[type="text"],
+body.light .projekt-edit-form input[type="date"],
+body.light .projekt-edit-form textarea,
+body.light .projekt-edit-form select {
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+}
+body.light .projekt-edit-form input[type="text"]:focus,
+body.light .projekt-edit-form input[type="date"]:focus,
+body.light .projekt-edit-form textarea:focus,
+body.light .projekt-edit-form select:focus {
+  border: 1.5px solid #2563eb;
+  box-shadow: 0 0 0 2px #2563eb33;
+}
+body.light .projekt-edit-save {
+  background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
+  color: #fff;
+}
+body.light .projekt-edit-save:enabled {
+  background: linear-gradient(90deg, #22c55e 60%, #60e6a8 100%);
+}

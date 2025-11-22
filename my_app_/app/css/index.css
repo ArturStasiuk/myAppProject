@@ -1,0 +1,175 @@
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #1f2937; color: #f9fafb;
+        height: 100vh; overflow: hidden;
+    }
+
+body.light {
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+body.light header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.light header button {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #1f2937;
+}
+
+body.light header button:hover {
+    background: #e5e7eb;
+}
+
+body.light aside {
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+}
+
+body.light aside button {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #1f2937;
+}
+
+body.light aside button:hover {
+    background: #e5e7eb;
+}
+
+body.light main {
+    background: #f3f4f6;
+}
+
+body.light .karta {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+}
+
+body.light .navbar-karta {
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.light .navbar-karta-menu button {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #1f2937;
+}
+
+body.light .navbar-karta-menu button:hover {
+    background: #e5e7eb;
+}
+
+body.light .navbar-karta-toggle,
+body.light .navbar-karta-close {
+    color: #1f2937;
+}
+
+body.light .content-karta {
+    color: #1f2937;
+}
+
+body.light .content-karta p {
+    color: #6b7280;
+}
+
+body.light .footer-karta {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+body.light footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+header {
+    position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+    background: #111827; display: flex; align-items: center; padding: 0 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); border-bottom: 1px solid #374151; z-index: 1000;
+}
+header button {
+    background: #1f2937; border: 1px solid #374151; border-radius: 8px;
+    padding: 8px 16px; cursor: pointer; color: #f9fafb; font-size: 14px; font-weight: 500;
+    transition: all 0.2s ease; margin-right: 10px;
+}
+header button:hover { background: #374151; transform: translateY(-1px); }
+header span { margin-left: auto; color: #d1d5db; font-size: 14px; }
+
+aside {
+    position: fixed; top: 60px; left: 0; bottom: 0;
+    background: #111827; border-right: 1px solid #374151; padding: 12px;
+    transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow-y: auto; z-index: 900; width: 200px;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.8);
+}
+aside.widoczny { transform: translateX(0); }
+aside button {
+    display: block; width: 100%; background: #1f2937; border: 1px solid #374151;
+    border-radius: 8px; margin: 6px 0; padding: 10px; text-align: left;
+    color: #f9fafb; cursor: pointer; transition: all 0.2s ease;
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: -2px 5px 10px rgba(0,0,0,0.3);
+}
+aside button:hover { 
+    background: #374151;
+    transform: perspective(600px) rotateY(-5deg) translateX(-2px);
+    box-shadow: -5px 10px 20px rgba(59, 130, 246, 0.2);
+}
+
+main {
+    position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+    background: #111827; overflow-y: auto; padding: 24px; transition: margin-left 0.3s ease;
+}
+
+.karta {
+    background: #1f2937; border: 1px solid #374151; border-radius: 12px;
+    margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 20px rgba(59, 130, 246, 0.1);
+    overflow: hidden; transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.karta:hover { 
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+.navbar-karta {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #111827; border-bottom: 1px solid #374151;
+    padding: 10px;
+}
+
+.navbar-karta-left { display: flex; align-items: center; gap: 8px; }
+.navbar-karta-menu { display: none; gap: 6px; }
+.navbar-karta-menu.widoczny { display: flex; }
+.navbar-karta-menu button {
+    background: #1f2937; border: 1px solid #374151; border-radius: 6px;
+    padding: 4px 8px; color: #f9fafb; cursor: pointer; font-size: 13px;
+}
+.navbar-karta-menu button:hover { background: #374151; }
+
+.navbar-karta-toggle, .navbar-karta-close {
+    background: none; border: none; color: #f9fafb; cursor: pointer; font-size: 16px;
+}
+.navbar-karta-close:hover { color: #ef4444; }
+
+.content-karta { padding: 16px 20px; }
+.karta h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.karta p { color: #d1d5db; font-size: 14px; }
+
+.footer-karta {
+    background: #111827; border-top: 1px solid #374151;
+    padding: 8px 10px; font-size: 12px; color: #9ca3af;
+}
+
+footer {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: #111827; border-top: 1px solid #374151;
+    color: #d1d5db; font-size: 13px; text-align: center;
+    padding: 10px; box-shadow: 0 -2px 4px rgba(0,0,0,0.4);
+}

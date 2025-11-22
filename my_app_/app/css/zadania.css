@@ -1,0 +1,306 @@
+.zadania-btn-delete {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+    cursor: pointer;
+    background: #dc2626;
+    color: #fff;
+    transition: background 0.2s, color 0.2s;
+}
+.zadania-btn-delete:hover {
+    background: #b91c1c;
+    color: #fff;
+}
+/* Styl formularza zadania */
+.zadania-form-wrap {
+    background: #1f2937;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    margin-bottom: 10px;
+    padding: 0;
+}
+.zadania-form-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+    color: #f9fafb;
+}
+.zadania-form-table th, .zadania-form-table td {
+    padding: 8px;
+    font-size: 15px;
+    border-bottom: 1px solid #374151;
+    background: transparent;
+    color: #f9fafb;
+    vertical-align: top;
+}
+.zadania-form-table th {
+    background: #111827;
+    font-weight: 600;
+    color: #f9fafb;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+}
+.zadania-form-table input[type="text"],
+.zadania-form-table input[type="date"],
+.zadania-form-table select,
+.zadania-form-table textarea {
+    width: 95%;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    background: #111827;
+    color: #f9fafb;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+.zadania-form-table textarea {
+    resize: vertical;
+}
+.zadania-form-table input[type="range"] {
+    width: 70%;
+    margin-right: 8px;
+}
+.zadania-form-table output {
+    font-weight: bold;
+    color: #22c55e;
+}
+.zadania-btn-save, .zadania-btn-cancel, .zadania-btn-delete {
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    height: 28px;
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.zadania-btn-save {
+    background: #22c55e;
+    color: #fff;
+}
+.zadania-btn-save:hover {
+    background: #16a34a;
+}
+.zadania-btn-cancel {
+    background: #ef4444;
+    color: #fff;
+}
+.zadania-btn-cancel:hover {
+    background: #b91c1c;
+}
+body.light .zadania-form-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+}
+body.light .zadania-form-table th {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .zadania-form-table td {
+    background: #fff;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .zadania-form-table input[type="text"],
+body.light .zadania-form-table input[type="date"],
+body.light .zadania-form-table select,
+body.light .zadania-form-table textarea {
+    background: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #e5e7eb;
+}
+body.light .zadania-form-table output {
+    color: #22c55e;
+}
+/* Pasek postępu wykonania zadań */
+/* Pasek postępu wykonania zadań - wersja z podziałem na wykonane/niewykonane */
+.zadania-progress-bar-wrap.zadania-progress-bar-singleline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 18px 10px 10px;
+    margin: 0;
+}
+.zadania-progress-bar-bg {
+    width: 340px;
+    height: 24px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #374151;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.zadania-progress-bar-green {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 8px 0 0 8px;
+    transition: width 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 1;
+}
+.zadania-progress-bar-red {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: #ef4444;
+    border-radius: 0 8px 8px 0;
+    transition: width 0.4s cubic-bezier(.4,2,.6,1);
+    z-index: 1;
+}
+.zadania-progress-bar-label {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    pointer-events: none;
+    text-shadow: 0 1px 2px #00000099;
+}
+body.light .zadania-progress-bar-bg {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+}
+body.light .zadania-progress-bar-label {
+    color: #1f2937;
+    text-shadow: none;
+}
+body.light .zadania-progress-bar-bg {
+    border: 1px solid #e5e7eb;
+}
+body.light .zadania-progress-label {
+    color: #1f2937;
+}
+/* Stopka statystyk zadań */
+.zadania-footer-stat {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    background: #111827;
+    color: #f9fafb;
+    font-size: 15px;
+    border-radius: 0 0 12px 12px;
+    padding: 8px 12px 8px 8px;
+    margin-top: 0;
+    border-top: 1px solid #374151;
+    min-height: 28px;
+}
+body.light .zadania-footer-stat {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-top: 1px solid #e5e7eb;
+}
+/* Styl dla widoku zadań - zadania.css */
+
+.zadania-table-wrap {
+    max-height: 320px;
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid #374151;
+    background: #1f2937;
+    margin-bottom: 10px;
+}
+
+.zadania-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+    color: #f9fafb;
+}
+
+.zadania-table th {
+    position: sticky;
+    top: 0;
+    background: #111827;
+    z-index: 2;
+    border-bottom: 1px solid #374151;
+    text-align: left;
+    padding: 8px;
+    font-weight: 600;
+    color: #f9fafb;
+}
+
+.zadania-table th.status-col {
+    text-align: center;
+}
+
+.zadania-table td {
+    word-break: break-word;
+    white-space: pre-wrap;
+    max-width: 250px;
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #374151;
+    background: transparent;
+    color: #f9fafb;
+    height: auto !important;
+}
+
+.zadania-table tr {
+    height: auto !important;
+}
+
+.zadania-table .zadanie-row.selected {
+    background: #2563eb !important;
+    color: #f9fafb;
+}
+
+.zadania-table .zadanie-row:hover {
+    background: #374151;
+}
+
+@media (max-width: 700px) {
+    .zadania-table th, .zadania-table td {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .zadania-table td {
+        max-width: 120px;
+    }
+}
+
+body.light .zadania-table-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+}
+body.light .zadania-table th {
+    background: #f3f4f6;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .zadania-table td {
+    background: #fff;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+body.light .zadania-table .zadanie-row.selected,
+body.light .zadania-table .zadanie-row.selected td,
+body.light .zadania-table .zadanie-row.selected th {
+    background: #2563eb !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 2px #2563eb33;
+    outline: 1.5px solid #2563eb;
+    z-index: 1;
+}
+body.light .zadania-table .zadanie-row:hover {
+    background: #f1f5f9;
+}

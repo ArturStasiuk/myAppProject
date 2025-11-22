@@ -1,0 +1,153 @@
+Oto przykładowe ikony dla Twoich tabel i kolumn, pogrupowane według tabeli, w stylu jak podałeś:
+
+🏗️ brygady
+🆔 id_brygady
+🏷️ nazwa_brygady
+📝 opis_brygady
+👨‍💼 lider_brygady
+🟢 aktywna
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+📔 dziennik_pracy
+🆔 id_dziennik
+🏗️ id_projektu
+👷 id_pracownika
+📅 data_pracy
+▶️ czas_rozpoczecia
+⏹️ czas_zakonczenia
+⏳ czas_pracy
+📝 opis_pracy
+🗒️ notatka
+✅ zatwierdzone
+👨‍💼 id_zatwierdzajacego
+🕒 data_zatwierdzenia
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+🛠️ extra_praca
+🆔 id_extra_praca
+🏗️ id_projektu
+📝 opis_pracy
+🗒️ notatka
+📅 data_rozpoczecia
+📅 data_zakonczenia
+⏰ przypomnij_rozpoczecie
+⏳ czas_pracy
+💰 koszt_dodatkowy
+✅ zatwierdzona
+👷 id_pracownika
+👨‍💼 id_zatwierdzajacego
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+🗒️ notatki_projektu
+🆔 id_notatki
+🏗️ id_projektu
+🏷️ tytul_notatki
+📝 tresc_notatki
+🏷️ typ_notatki
+⚠️ priorytet
+👁️ publiczna
+👨‍💼 id_autora
+👤 id_adresata
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+👷 pracownicy
+🆔 id_pracownika
+🧑 imie
+🧑‍🦰 nazwisko
+📧 email
+📞 telefon
+🏷️ stanowisko
+🏗️ id_brygady
+📅 data_zatrudnienia
+🟢 aktywny
+🛡️ uprawnienia
+🔑 haslo
+🕒 ostatnie_logowanie
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+
+📁 projekty
+🆔 id_projektu
+🏷️ nazwa_projektu
+📍 adres_projektu
+📅 planowane_rozpoczecie
+📅 planowane_zakonczenie
+⏰ przypomnij_rozpoczecie
+⏰ przypomnij_zakonczenie
+📅 data_rozpoczecia
+📅 data_zakonczenia
+🔄 stan_projektu
+⚠️ status_projektu
+🏗️ id_brygady
+👨‍💼 id_kierownika
+👁️‍🗨️ ukryj_projekt
+
+
+🗒️ notatka
+🕒 data_utworzenia
+🔄 data_modyfikacji
+⏰ przypomnienia
+🆔 id_przypomnienia
+🏷️ tytul
+📝 opis
+📅 data_przypomnienia
+🏷️ typ_przypomnienia
+🆔 id_powiazanego_obiektu
+👷 id_pracownika
+👨‍💼 id_utworzyl
+🔄 status
+🔁 powtarzaj
+🕒 data_wyslania
+🕒 data_odczytania
+⚠️ priorytet
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+
+📋 zadania
+🆔 id_zadania
+🏗️ id_projektu
+🏷️ tytul_zadania
+📝 opis_zadania
+🗒️ notatka
+📅 data_rozpoczecia
+📅 data_zakonczenia
+📅 planowana_data_zakonczenia
+✅ status_zadania
+⚠️ priorytet
+⏰ przypomnij_rozpoczecie
+👷 id_pracownika
+📊 procent_wykonania
+🕒 data_utworzenia
+🔄 data_modyfikacji
+
+
+🖼️ zdjecia
+🆔 id_zdjecia
+🏗️ id_projektu
+📋 id_zadania
+🛠️ id_extra_praca
+🏷️ nazwa_pliku
+📁 sciezka_pliku
+📁 sciezka_katalogu
+📏 rozmiar_pliku
+🖼️ typ_pliku
+🗂️ rozszerzenie
+↔️ szerokosc
+↕️ wysokosc
+📝 opis_zdjecia
+🏷️ kategoria_zdjecia
+📅 data_zdjecia
+🌍 geolokalizacja_lat
+🌎 geolokalizacja_lng
+👁️ publiczne
+👨‍💼 id_autora
+🖼️ miniaturka_sciezka
+🟢 aktywne
+🕒 data_utworzenia
+🔄 data_modyfikacji
