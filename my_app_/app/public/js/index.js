@@ -33,8 +33,8 @@ window.addEventListener('load', async () => {
     while (!window.Render || !window.SideBar) {
         await new Promise(resolve => setTimeout(resolve, 50));
     }
-
-   // zmienMotyw(); // Ustaw początkowy motyw
+// Ustaw początkowy motyw
+// zmienMotyw(); 
     
 
  
