@@ -1,5 +1,6 @@
 <?php 
 class Config {
+    //  konfiguracja dla lenowo
     const DB_HOST = 'localhost';
     const DB_NAME = 'project_002';
     const DB_USER = 'phpmyadmin';
