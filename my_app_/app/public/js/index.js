@@ -34,7 +34,7 @@ window.addEventListener('load', async () => {
         await new Promise(resolve => setTimeout(resolve, 50));
     }
 
-    zmienMotyw(); // Ustaw początkowy motyw
+   // zmienMotyw(); // Ustaw początkowy motyw
     
 
  
