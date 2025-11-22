@@ -1,4 +1,3 @@
-
 /* odpowiada za wyglad i funkcjonalnosc kart projekty */
 
 class projekty {
