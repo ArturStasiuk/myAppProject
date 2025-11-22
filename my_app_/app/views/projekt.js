@@ -523,10 +523,7 @@ nowy_projekt(aktywne_brygady, kierownicy_brygad) {
       </script>
     `,
       footer: `
-        <div class="projekt-footer-buttons">
-          <button type="button" class="footer-btn" onclick="window.Render.deleteContent()">Zamknij</button>
-          <button type="button" class="footer-btn" onclick="window.location.reload()">Odśwież</button>
-        </div>
+      
       `,
     ikony: [
       {
