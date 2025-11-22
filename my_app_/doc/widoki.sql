@@ -1,313 +1,233 @@
--- Widok: podsumowanie projektu z licznikami zadań i dodatkowej pracy
--- Tworzy widok z podstawowymi polami z tabeli `projekty` oraz:
---  - zadania_wykonane     = liczba zadań (status_zadania = 1)
---  - zadania_niewykonane  = liczba zadań (status_zadania = 0 lub NULL)
---  - extra_praca_count    = liczba rekordów w `extra_praca` powiązanych z projektem
+--
+-- Zastąpiona struktura widoku `view_brygady_summary`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_brygady_summary` (
+`id_brygady` int(11)
+,`nazwa_brygady` varchar(255)
+,`opis_brygady` text
+,`lider_brygady` int(11)
+,`lider_imie_nazwisko` varchar(201)
+,`aktywna` tinyint(1)
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+,`liczba_pracownikow` bigint(21)
+,`liczba_projektow` bigint(21)
+);
 
-DROP VIEW IF EXISTS `view_project_summary`;
-CREATE VIEW `view_project_summary` AS
-SELECT
-  p.`id_projektu`,
-  p.`nazwa_projektu`,
-  p.`adres_projektu`,
-  p.`planowane_rozpoczecie`,
-  p.`planowane_zakonczenie`,
-  p.`przypomnij_rozpoczecie`,
-  p.`przypomnij_zakonczenie`,
-  p.`data_rozpoczecia`,
-  p.`data_zakonczenia`,
-  p.`notatka`,
-  p.`stan_projektu`,
-  p.`status_projektu`,
-  -- liczniki zadań (podzapytania aby uniknąć mnożenia w JOIN)
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `zadania` z
-    WHERE z.`id_projektu` = p.`id_projektu`
-      AND z.`status_zadania` = 1
-  ), 0) AS `zadania_wykonane`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `zadania` z
-    WHERE z.`id_projektu` = p.`id_projektu`
-      AND (z.`status_zadania` = 0 OR z.`status_zadania` IS NULL)
-  ), 0) AS `zadania_niewykonane`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `zadania` z
-    WHERE z.`id_projektu` = p.`id_projektu`
-  ), 0) AS `zadania_razem`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `extra_praca` e
-    WHERE e.`id_projektu` = p.`id_projektu`
-  ), 0) AS `extra_praca_count`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `extra_praca` e
-    WHERE e.`id_projektu` = p.`id_projektu` AND e.`zatwierdzona` = 1
-  ), 0) AS `extra_praca_zatwierdzone`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `extra_praca` e
-    WHERE e.`id_projektu` = p.`id_projektu` AND (e.`zatwierdzona` = 0 OR e.`zatwierdzona` IS NULL)
-  ), 0) AS `extra_praca_niezatwierdzone`,
-  -- liczniki przypomnień wg statusu
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `przypomnienia` r
-    WHERE r.`id_powiazanego_obiektu` = p.`id_projektu` AND r.`status` = 'Aktywne'
-  ), 0) AS `przypomnienia_aktywne`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `przypomnienia` r
-    WHERE r.`id_powiazanego_obiektu` = p.`id_projektu` AND r.`status` = 'Wyslane'
-  ), 0) AS `przypomnienia_wyslane`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `przypomnienia` r
-    WHERE r.`id_powiazanego_obiektu` = p.`id_projektu` AND r.`status` = 'Odczytane'
-  ), 0) AS `przypomnienia_odczytane`,
-  COALESCE((
-    SELECT COUNT(1)
-    FROM `przypomnienia` r
-    WHERE r.`id_powiazanego_obiektu` = p.`id_projektu` AND r.`status` = 'Anulowane'
-  ), 0) AS `przypomnienia_anulowane`
-FROM `projekty` p;
+-- --------------------------------------------------------
 
--- Widok: view_zadania_full
--- Zwraca wszystkie istotne pola z tabeli `zadania` wraz z nazwą projektu i imieniem/nazwiskiem przypisanego pracownika
--- Ułatwia zapytania typu: WHERE id_projektu = X OR WHERE tytul_zadania LIKE '%...%'
+--
+-- Zastąpiona struktura widoku `view_dziennik_pracy_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_dziennik_pracy_full` (
+`id_dziennik` int(11)
+,`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`id_pracownika` int(11)
+,`pracownik` varchar(201)
+,`data_pracy` date
+,`czas_rozpoczecia` time
+,`czas_zakonczenia` time
+,`czas_pracy` decimal(5,2)
+,`opis_pracy` text
+,`notatka` text
+,`zatwierdzone` tinyint(1)
+,`id_zatwierdzajacego` int(11)
+,`zatwierdzajacy` varchar(201)
+,`data_zatwierdzenia` timestamp
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+);
 
-DROP VIEW IF EXISTS `view_zadania_full`;
-CREATE VIEW `view_zadania_full` AS
-SELECT
-  z.`id_zadania`,
-  z.`id_projektu`,
-  p.`nazwa_projektu`,
-  z.`tytul_zadania`,
-  z.`opis_zadania`,
-  z.`notatka`,
-  z.`data_rozpoczecia`,
-  z.`data_zakonczenia`,
-  z.`planowana_data_zakonczenia`,
-  z.`status_zadania`,
-  z.`priorytet`,
-  z.`przypomnij_rozpoczecie`,
-  z.`id_pracownika`,
-  CONCAT(COALESCE(pr.`imie`,''), ' ', COALESCE(pr.`nazwisko`,'')) AS `pracownik`,
-  z.`procent_wykonania`,
-  z.`data_utworzenia`,
-  z.`data_modyfikacji`
-FROM `zadania` z
-LEFT JOIN `projekty` p ON z.`id_projektu` = p.`id_projektu`
-LEFT JOIN `pracownicy` pr ON z.`id_pracownika` = pr.`id_pracownika`;
+-- --------------------------------------------------------
 
--- Widok: podsumowanie brygad z informacją o liderze i liczbach pracowników/projektów
-DROP VIEW IF EXISTS `view_brygady_summary`;
-CREATE VIEW `view_brygady_summary` AS
-SELECT
-  b.`id_brygady`,
-  b.`nazwa_brygady`,
-  b.`opis_brygady`,
-  b.`lider_brygady`,
-  CONCAT_WS(' ', l.`imie`, l.`nazwisko`) AS `lider_imie_nazwisko`,
-  b.`aktywna`,
-  b.`data_utworzenia`,
-  b.`data_modyfikacji`,
-  COALESCE((
-    SELECT COUNT(1) FROM `pracownicy` pw WHERE pw.`id_brygady` = b.`id_brygady`
-  ), 0) AS `liczba_pracownikow`,
-  COALESCE((
-    SELECT COUNT(1) FROM `projekty` pr WHERE pr.`id_brygady` = b.`id_brygady`
-  ), 0) AS `liczba_projektow`
-FROM `brygady` b
-LEFT JOIN `pracownicy` l ON b.`lider_brygady` = l.`id_pracownika`;
+--
+-- Zastąpiona struktura widoku `view_extra_praca_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_extra_praca_full` (
+`id_extra_praca` int(11)
+,`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`opis_pracy` text
+,`notatka` text
+,`data_rozpoczecia` date
+,`data_zakonczenia` date
+,`przypomnij_rozpoczecie` tinyint(1)
+,`czas_pracy` decimal(5,2)
+,`koszt_dodatkowy` decimal(10,2)
+,`zatwierdzona` tinyint(1)
+,`id_pracownika` int(11)
+,`wykonawca` varchar(201)
+,`id_zatwierdzajacego` int(11)
+,`zatwierdzajacy` varchar(201)
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+);
 
--- Widok: dodatkowa praca (extra_praca) z nazwą projektu, wykonawcą i zatwierdzającym
-DROP VIEW IF EXISTS `view_extra_praca_full`;
-CREATE VIEW `view_extra_praca_full` AS
-SELECT
-  e.`id_extra_praca`,
-  e.`id_projektu`,
-  p.`nazwa_projektu`,
-  e.`opis_pracy`,
-  e.`notatka`,
-  e.`data_rozpoczecia`,
-  e.`data_zakonczenia`,
-  e.`przypomnij_rozpoczecie`,
-  e.`czas_pracy`,
-  e.`koszt_dodatkowy`,
-  e.`zatwierdzona`,
-  e.`id_pracownika`,
-  CONCAT_WS(' ', pw.`imie`, pw.`nazwisko`) AS `wykonawca`,
-  e.`id_zatwierdzajacego`,
-  CONCAT_WS(' ', zatw.`imie`, zatw.`nazwisko`) AS `zatwierdzajacy`,
-  e.`data_utworzenia`,
-  e.`data_modyfikacji`
-FROM `extra_praca` e
-LEFT JOIN `projekty` p ON e.`id_projektu` = p.`id_projektu`
-LEFT JOIN `pracownicy` pw ON e.`id_pracownika` = pw.`id_pracownika`
-LEFT JOIN `pracownicy` zatw ON e.`id_zatwierdzajacego` = zatw.`id_pracownika`;
+-- --------------------------------------------------------
 
--- Widok: notatki_projektu z informacjami o projekcie, autorze i odbiorcy
-DROP VIEW IF EXISTS `view_notatki_projektu_full`;
-CREATE VIEW `view_notatki_projektu_full` AS
-SELECT
-  n.`id_notatki`,
-  n.`id_projektu`,
-  p.`nazwa_projektu`,
-  n.`tytul_notatki`,
-  n.`tresc_notatki`,
-  n.`typ_notatki`,
-  n.`priorytet`,
-  n.`publiczna`,
-  n.`id_autora`,
-  CONCAT_WS(' ', a.`imie`, a.`nazwisko`) AS `autor`,
-  n.`id_adresata`,
-  CONCAT_WS(' ', ad.`imie`, ad.`nazwisko`) AS `adresat`,
-  n.`data_utworzenia`,
-  n.`data_modyfikacji`
-FROM `notatki_projektu` n
-LEFT JOIN `projekty` p ON n.`id_projektu` = p.`id_projektu`
-LEFT JOIN `pracownicy` a ON n.`id_autora` = a.`id_pracownika`
-LEFT JOIN `pracownicy` ad ON n.`id_adresata` = ad.`id_pracownika`;
+--
+-- Zastąpiona struktura widoku `view_notatki_projektu_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_notatki_projektu_full` (
+`id_notatki` int(11)
+,`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`tytul_notatki` varchar(255)
+,`tresc_notatki` text
+,`typ_notatki` enum('Ogólna','Techniczna','Finansowa','Komunikacja','Problem','Rozwiązanie')
+,`priorytet` enum('Niski','Normalny','Wysoki','Krytyczny')
+,`publiczna` tinyint(1)
+,`id_autora` int(11)
+,`autor` varchar(201)
+,`id_adresata` int(11)
+,`adresat` varchar(201)
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+);
 
--- Widok: dziennik_pracy z nazwą projektu oraz imieniem i nazwiskiem pracownika i zatwierdzającego
-DROP VIEW IF EXISTS `view_dziennik_pracy_full`;
-CREATE VIEW `view_dziennik_pracy_full` AS
-SELECT
-  d.`id_dziennik`,
-  d.`id_projektu`,
-  p.`nazwa_projektu`,
-  d.`id_pracownika`,
-  CONCAT_WS(' ', pr.`imie`, pr.`nazwisko`) AS `pracownik`,
-  d.`data_pracy`,
-  d.`czas_rozpoczecia`,
-  d.`czas_zakonczenia`,
-  d.`czas_pracy`,
-  d.`opis_pracy`,
-  d.`notatka`,
-  d.`zatwierdzone`,
-  d.`id_zatwierdzajacego`,
-  CONCAT_WS(' ', zatw.`imie`, zatw.`nazwisko`) AS `zatwierdzajacy`,
-  d.`data_zatwierdzenia`,
-  d.`data_utworzenia`,
-  d.`data_modyfikacji`
-FROM `dziennik_pracy` d
-LEFT JOIN `projekty` p ON d.`id_projektu` = p.`id_projektu`
-LEFT JOIN `pracownicy` pr ON d.`id_pracownika` = pr.`id_pracownika`
-LEFT JOIN `pracownicy` zatw ON d.`id_zatwierdzajacego` = zatw.`id_pracownika`;
+-- --------------------------------------------------------
 
--- Widok: pracownicy z nazwą brygady oraz licznikami zadań, extra_pracy i wpisów w dzienniku
-DROP VIEW IF EXISTS `view_pracownicy_full`;
-CREATE VIEW `view_pracownicy_full` AS
-SELECT
-  pw.`id_pracownika`,
-  pw.`imie`,
-  pw.`nazwisko`,
-  pw.`email`,
-  pw.`telefon`,
-  pw.`stanowisko`,
-  pw.`id_brygady`,
-  b.`nazwa_brygady`,
-  pw.`data_zatrudnienia`,
-  pw.`aktywny`,
-  pw.`uprawnienia`,
-  pw.`ostatnie_logowanie`,
-  pw.`data_utworzenia`,
-  pw.`data_modyfikacji`,
-  COALESCE((
-    SELECT COUNT(1) FROM `zadania` z WHERE z.`id_pracownika` = pw.`id_pracownika`
-  ), 0) AS `liczba_zadan`,
-  COALESCE((
-    SELECT COUNT(1) FROM `extra_praca` e WHERE e.`id_pracownika` = pw.`id_pracownika`
-  ), 0) AS `liczba_extra_praca`,
-  COALESCE((
-    SELECT COUNT(1) FROM `dziennik_pracy` d WHERE d.`id_pracownika` = pw.`id_pracownika`
-  ), 0) AS `liczba_wpisow_dziennika`
-FROM `pracownicy` pw
-LEFT JOIN `brygady` b ON pw.`id_brygady` = b.`id_brygady`;
+--
+-- Zastąpiona struktura widoku `view_pracownicy_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_pracownicy_full` (
+`id_pracownika` int(11)
+,`imie` varchar(100)
+,`nazwisko` varchar(100)
+,`email` varchar(255)
+,`telefon` varchar(20)
+,`stanowisko` varchar(100)
+,`id_brygady` int(11)
+,`nazwa_brygady` varchar(255)
+,`data_zatrudnienia` date
+,`aktywny` tinyint(1)
+,`uprawnienia` enum('Administrator','Kierownik','Pracownik','Obserwator')
+,`ostatnie_logowanie` timestamp
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+,`liczba_zadan` bigint(21)
+,`liczba_extra_praca` bigint(21)
+,`liczba_wpisow_dziennika` bigint(21)
+);
 
--- Widok: przypomnienia z informacjami o odbiorcy i twórcy przypomnienia
-DROP VIEW IF EXISTS `view_przypomnienia_full`;
-CREATE VIEW `view_przypomnienia_full` AS
-SELECT
-  r.`id_przypomnienia`,
-  r.`tytul`,
-  r.`opis`,
-  r.`data_przypomnienia`,
-  r.`typ_przypomnienia`,
-  r.`id_powiazanego_obiektu`,
-  r.`id_pracownika`,
-  CONCAT_WS(' ', odb.`imie`, odb.`nazwisko`) AS `odbiorca`,
-  r.`id_utworzyl`,
-  CONCAT_WS(' ', utw.`imie`, utw.`nazwisko`) AS `utworzyl`,
-  r.`status`,
-  r.`powtarzaj`,
-  r.`data_wyslania`,
-  r.`data_odczytania`,
-  r.`priorytet`,
-  r.`data_utworzenia`,
-  r.`data_modyfikacji`
-FROM `przypomnienia` r
-LEFT JOIN `pracownicy` odb ON r.`id_pracownika` = odb.`id_pracownika`
-LEFT JOIN `pracownicy` utw ON r.`id_utworzyl` = utw.`id_pracownika`;
+-- --------------------------------------------------------
 
+--
+-- Zastąpiona struktura widoku `view_project_summary`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_project_summary` (
+`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`adres_projektu` text
+,`planowane_rozpoczecie` date
+,`planowane_zakonczenie` date
+,`przypomnij_rozpoczecie` tinyint(1)
+,`przypomnij_zakonczenie` tinyint(1)
+,`data_rozpoczecia` date
+,`data_zakonczenia` date
+,`notatka` text
+,`stan_projektu` enum('W trakcie','Wstrzymany','Planowany','Do zatwierdzenia','Zakończony','Nie określono')
+,`status_projektu` enum('Normalny','Pilny','Krytyczny')
+,`zadania_wykonane` bigint(21)
+,`zadania_niewykonane` bigint(21)
+,`zadania_razem` bigint(21)
+,`extra_praca_count` bigint(21)
+,`extra_praca_zatwierdzone` bigint(21)
+,`extra_praca_niezatwierdzone` bigint(21)
+,`przypomnienia_aktywne` bigint(21)
+,`przypomnienia_wyslane` bigint(21)
+,`przypomnienia_odczytane` bigint(21)
+,`przypomnienia_anulowane` bigint(21)
+);
 
--- Widok: pełne projekty z nazwą kierownika, nazwą brygady oraz licznikami zadań i extra_praca
-DROP VIEW IF EXISTS `view_projekty_full`;
-CREATE VIEW `view_projekty_full` AS
-SELECT
-  p.`id_projektu`,
-  p.`nazwa_projektu`,
-  p.`adres_projektu`,
-  p.`planowane_rozpoczecie`,
-  p.`planowane_zakonczenie`,
-  p.`przypomnij_rozpoczecie`,
-  p.`przypomnij_zakonczenie`,
-  p.`data_rozpoczecia`,
-  p.`data_zakonczenia`,
-  p.`stan_projektu`,
-  p.`status_projektu`,
-  p.`id_brygady`,
-  b.`nazwa_brygady`,
-  p.`id_kierownika`,
-  CONCAT_WS(' ', k.`imie`, k.`nazwisko`) AS `kierownik`,
-  p.`ukryj_projekt`,
-  p.`notatka`,
-  p.`data_utworzenia`,
-  p.`data_modyfikacji`,
-  COALESCE((
-    SELECT COUNT(1) FROM `zadania` z WHERE z.`id_projektu` = p.`id_projektu`
-  ), 0) AS `liczba_zadan`,
-  COALESCE((
-    SELECT SUM(CASE WHEN z.`status_zadania` = 1 THEN 1 ELSE 0 END) FROM `zadania` z WHERE z.`id_projektu` = p.`id_projektu`
-  ), 0) AS `liczba_zadan_wykonanych`,
-  COALESCE((
-    SELECT COUNT(1) FROM `extra_praca` e WHERE e.`id_projektu` = p.`id_projektu`
-  ), 0) AS `liczba_extra_praca`
-FROM `projekty` p
-LEFT JOIN `brygady` b ON p.`id_brygady` = b.`id_brygady`
-LEFT JOIN `pracownicy` k ON p.`id_kierownika` = k.`id_pracownika`;
+-- --------------------------------------------------------
 
--- Widok: podsumowanie brygad z informacją o liderze i liczbach pracowników/projektów
-DROP VIEW IF EXISTS `view_brygady_summary`;
-CREATE VIEW `view_brygady_summary` AS
-SELECT
-  b.`id_brygady`,
-  b.`nazwa_brygady`,
-  b.`opis_brygady`,
-  b.`lider_brygady`,
-  CONCAT_WS(' ', l.`imie`, l.`nazwisko`) AS `lider_imie_nazwisko`,
-  b.`aktywna`,
-  b.`data_utworzenia`,
-  b.`data_modyfikacji`,
-  COALESCE((
-    SELECT COUNT(1) FROM `pracownicy` pw WHERE pw.`id_brygady` = b.`id_brygady`
-  ), 0) AS `liczba_pracownikow`,
-  COALESCE((
-    SELECT COUNT(1) FROM `projekty` pr WHERE pr.`id_brygady` = b.`id_brygady`
-  ), 0) AS `liczba_projektow`
-FROM `brygady` b
-LEFT JOIN `pracownicy` l ON b.`lider_brygady` = l.`id_pracownika`;
+--
+-- Zastąpiona struktura widoku `view_projekty_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_projekty_full` (
+`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`adres_projektu` text
+,`planowane_rozpoczecie` date
+,`planowane_zakonczenie` date
+,`przypomnij_rozpoczecie` tinyint(1)
+,`przypomnij_zakonczenie` tinyint(1)
+,`data_rozpoczecia` date
+,`data_zakonczenia` date
+,`stan_projektu` enum('W trakcie','Wstrzymany','Planowany','Do zatwierdzenia','Zakończony','Nie określono')
+,`status_projektu` enum('Normalny','Pilny','Krytyczny')
+,`id_brygady` int(11)
+,`nazwa_brygady` varchar(255)
+,`id_kierownika` int(11)
+,`kierownik` varchar(201)
+,`ukryj_projekt` tinyint(1)
+,`notatka` text
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+,`liczba_zadan` bigint(21)
+,`liczba_zadan_wykonanych` decimal(22,0)
+,`liczba_extra_praca` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Zastąpiona struktura widoku `view_przypomnienia_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_przypomnienia_full` (
+`id_przypomnienia` int(11)
+,`tytul` varchar(255)
+,`opis` text
+,`data_przypomnienia` datetime
+,`typ_przypomnienia` enum('Projekt','Zadanie','Extra_praca','Ogólne','Spotkanie')
+,`id_powiazanego_obiektu` int(11)
+,`id_pracownika` int(11)
+,`odbiorca` varchar(201)
+,`id_utworzyl` int(11)
+,`utworzyl` varchar(201)
+,`status` enum('Aktywne','Wyslane','Odczytane','Anulowane')
+,`powtarzaj` enum('Jednorazowe','Codziennie','Co_tydzien','Co_miesiac')
+,`data_wyslania` timestamp
+,`data_odczytania` timestamp
+,`priorytet` enum('Niski','Normalny','Wysoki','Krytyczny')
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+);
+
+-- --------------------------------------------------------
+
+--
+-- Zastąpiona struktura widoku `view_zadania_full`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_zadania_full` (
+`id_zadania` int(11)
+,`id_projektu` int(11)
+,`nazwa_projektu` varchar(255)
+,`tytul_zadania` varchar(255)
+,`opis_zadania` text
+,`notatka` text
+,`data_rozpoczecia` date
+,`data_zakonczenia` date
+,`planowana_data_zakonczenia` date
+,`status_zadania` tinyint(1)
+,`priorytet` enum('Niski','Normalny','Wysoki','Krytyczny')
+,`przypomnij_rozpoczecie` tinyint(1)
+,`id_pracownika` int(11)
+,`pracownik` varchar(201)
+,`procent_wykonania` int(11)
+,`data_utworzenia` timestamp
+,`data_modyfikacji` timestamp
+);
+
+-- --------------------------------------------------------
