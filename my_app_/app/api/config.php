@@ -4,7 +4,7 @@ class Config {
     const DB_NAME = 'project_002';
     const DB_USER = 'phpmyadmin';
     const DB_PASS = 'artur'; 
-    //
+    //bbb
 }
 try {
     $pdo = new PDO(
