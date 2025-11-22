@@ -35,7 +35,7 @@ window.addEventListener('load', async () => {
     }
 // Ustaw początkowy motyw
 // zmienMotyw(); 
-    
+ // srawdzanie sesji    
 
  
     /* ukrywa sideBar boczne po kliknięciu w zawartość content */
