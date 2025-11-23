@@ -40,11 +40,10 @@ if ($cssDir && is_dir($cssDir)) {
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
         echo '<div style="font-size: 1.1em;">';
-        echo 'Imię: <b>' . htmlspecialchars($user['imie']." " ?? '') . '</b>';
-        echo 'Email: <b>' . htmlspecialchars($user['email']." " ?? '') . '</b>';
+        echo 'Użytkownik: <b>' . htmlspecialchars($user['username'] . " " ?? '') . '</b>';
+      
         echo 'Uprawnienia: <b>' . htmlspecialchars($user['uprawnienia'] ." " ?? '') . '</b>';
-        echo 'ID brygady: <b>' . htmlspecialchars($user['id_brygady'] ?? '') . '</b>';
-        echo '</div>';
+      
     }
     ?>
 </footer>

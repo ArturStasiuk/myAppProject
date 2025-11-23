@@ -7,7 +7,7 @@ class Config {
     const DB_PASS = 'artur'; 
     //bbb 35t34t 43t 
 
-/* configuracja dla windows
+/* configuracja dla serwera asus
 
     const DB_HOST = 'localhost';
     const DB_NAME = 'project_002';
