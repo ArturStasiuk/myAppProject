@@ -35,8 +35,7 @@ if ($cssDir && is_dir($cssDir)) {
 <main id="content"></main>
 
 <footer id="footer">
-                 
-    <?php
+                 <?php
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
         echo '<div style="font-size: 1.1em;">';
