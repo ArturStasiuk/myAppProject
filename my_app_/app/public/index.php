@@ -39,7 +39,7 @@ if ($cssDir && is_dir($cssDir)) {
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
         echo '<div style="font-size: 1.1em;">';
-        echo 'Użytkownik: <b>' . htmlspecialchars($user['username'] . " " ?? '') . '</b>';
+        
       
         echo 'Uprawnienia: <b>' . htmlspecialchars($user['uprawnienia'] ." " ?? '') . '</b>';
       
