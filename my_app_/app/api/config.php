@@ -12,7 +12,7 @@ class Config {
     const DB_HOST = 'localhost';
     const DB_NAME = 'project_002';
     const DB_USER = 'root';
-    const DB_PASS = ''; 
+    const DB_PASS = 'artur'; 
     
 
 
